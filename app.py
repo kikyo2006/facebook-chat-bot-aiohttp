@@ -11,7 +11,6 @@ VERIFY_TOKEN = 'pjT8wQLF3dt5neEXhtCN'
 class BotControl(web.View):
 
     async def get(self):
-        print('test')
         query = self.request.rel_url.query
         if(query.get('hub.mode') == "subscribe" and query.get("hub.challenge")):
             if not query.get("hub.verify_token") == VERIFY_TOKEN:
