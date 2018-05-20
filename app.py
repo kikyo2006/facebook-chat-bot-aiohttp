@@ -61,7 +61,7 @@ class BotControl(web.View):
             }
         })
         async with aiohttp.ClientSession() as session:
-            await session.post("https://graph.facebook.com/v3.0/me/thread_settings", params=params, headers=headers, data=data) as resp:
+            async with session.post("https://graph.facebook.com/v3.0/me/thread_settings", params=params, headers=headers, data=data) as resp:
                 pass
 
     async def send_message(self, sender_id, message_text):
