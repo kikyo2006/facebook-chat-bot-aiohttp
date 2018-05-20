@@ -12,12 +12,7 @@ class BotControl(web.View):
 
     async def get(self):
         print('test')
-        query = self.request.rel_url.query
-        if(query.get('hub.mode') == "subscribe" and query.get("hub.challenge")):
-            if not query.get("hub.verify_token") == VERIFY_TOKEN:
-                return web.Response(text='Verification token mismatch', status=403)
-            return web.Response(text=query.get("hub.challenge"))
-        return web.Response(text='Forbidden', status=403)
+        return web.Response(text='Forbidden', status=200)
 
     async def post(self):
         data = await self.request.json()
