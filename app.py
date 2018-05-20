@@ -1,5 +1,6 @@
 import json
 import aiohttp
+from os import environ
 from aiohttp import web
 
 # fanpage token
@@ -93,4 +94,4 @@ app = web.Application()
 app.add_routes(routes)
 
 if __name__ == '__main__':
-    web.run_app(app, host='0.0.0.0', port=9090)
+    web.run_app(app, host='0.0.0.0', port=environ.get("PORT", 9090))
