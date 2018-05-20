@@ -60,9 +60,8 @@ class BotControl(web.View):
                 "text": message_text
             }
         })
-        async with aiohttp.ClientSession as session:
-            async with session.post("https://graph.facebook.com/v3.0/me/thread_settings", params=params, headers=headers, data=data) as resp:
-                pass
+        async with aiohttp.ClientSession() as session:
+            await session.post("https://graph.facebook.com/v3.0/me/thread_settings", params=params, headers=headers, data=data)
 
     async def send_message(self, sender_id, message_text):
 
@@ -81,11 +80,8 @@ class BotControl(web.View):
             }
         })
 
-        async with aiohttp.ClientSession as session:
-            async with session.post("https://graph.facebook.com/v3.0/me/messages", params=params, headers=headers, data=data) as resp:
-                pass
-
-
+        async with aiohttp.ClientSession() as session:
+            await session.post("https://graph.facebook.com/v3.0/me/messages", params=params, headers=headers, data=data)
 
 routes = [
     web.get('/', BotControl, name='verify'),
