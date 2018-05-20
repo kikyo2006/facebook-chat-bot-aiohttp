@@ -1,1 +1,1 @@
-web: uwsgi uwsgi.ini --enable-threads
+worker: uwsgi uwsgi.ini --enable-threads
