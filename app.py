@@ -8,6 +8,8 @@ PAGE_ACCESS_TOKEN = ''
 # verify token
 VERIFY_TOKEN = 'a'
 
+application = ''
+
 class BotControl(web.View):
 
     async def get(self):
@@ -27,4 +29,4 @@ app = web.Application()
 app.add_routes(routes)
 
 if __name__ == '__main__':
-    web.run_app(app, host='0.0.0.0', port=environ.get("PORT", 9090))
+    application = web.run_app(app, host='0.0.0.0', port=environ.get("PORT", 9090))
