@@ -4,7 +4,7 @@ from os import environ
 from aiohttp import web
 
 # fanpage token
-PAGE_ACCESS_TOKEN = 'EAAXzQzmoMhQBAF9QD1QMRZBb1ijtK7eMHcAj6LZChVVZBw9yXyoMBwPZCgGZBO7drJLZBdsJulB2x7cCV5PUZBYrydnwYK3jmWhc5TpzP4yY8zNY8V3Ix4uoZAw72hmxn9hJ0LjS6TSgdJFNftRpj5bZCpcLqUcYodCw4E08XhjWPgrSB2yazy9uW'
+PAGE_ACCESS_TOKEN = 'EAAXzQzmoMhQBAGdvz22RN4spSbn633bkWZAz9Mgt1ycq7AVcqBahEHD5YXkNGEM2dn973p7e3UsDwXB8GzCg3vmO2KfEdZCTni4f7Uk2HvyfZCGs4NWZCHzcGLCCzwlnwlg4Qownx8aNZC2FZCfVpC4ejqSyRVpLQlj8i6nPgBYBM6OY8mH8EP'
 # verify token
 VERIFY_TOKEN = 'pjT8wQLF3dt5neEXhtCN'
 
@@ -61,9 +61,7 @@ class BotControl(web.View):
             }
         })
         async with aiohttp.ClientSession() as session:
-            async with session.post("https://graph.facebook.com/v3.0/me/thread_settings", params=params, headers=headers, data=data) as resp:
-                data = await resp.text()
-                print(data)
+            await session.post("https://graph.facebook.com/v3.0/me/thread_settings", params=params, headers=headers, data=data)
 
     async def send_message(self, sender_id, message_text):
 
@@ -83,9 +81,7 @@ class BotControl(web.View):
         })
 
         async with aiohttp.ClientSession() as session:
-            async with session.post("https://graph.facebook.com/v3.0/me/messages", params=params, headers=headers, data=data) as resp:
-                data = await resp.text()
-                print(data)
+            await session.post("https://graph.facebook.com/v3.0/me/messages", params=params, headers=headers, data=data)
 
 
 
@@ -97,5 +93,5 @@ routes = [
 app = web.Application()
 app.add_routes(routes)
 
-#if __name__ == '__main__':
-#    web.run_app(app, host='0.0.0.0', port=environ.get("PORT", 9090))
+if __name__ == '__main__':
+    web.run_app(app, host='0.0.0.0', port=environ.get("PORT", 9090))
